@@ -27,6 +27,13 @@ console.log("will log in as "+u);
 var to_inject;
 
 var page = require('webpage').create();
+
+page.onResourceError = function(resourceError) {
+    page.reason = resourceError.errorString;
+    page.reason_url = resourceError.url;
+};
+
+
 console.log("navigating to sign in");
 page.open('https://retrospring.net/sign_in', function(status) {
     if (status === "success"){
@@ -39,6 +46,8 @@ page.open('https://retrospring.net/sign_in', function(status) {
     else{
         console.log("sign in page failed");
         console.log("status: " + status);
+        console.log("reason: " + page.reason);
+        console.log("reason url: "+page.reason_url);
         phantom.exit();
     }
 });
