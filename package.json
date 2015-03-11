@@ -1,0 +1,28 @@
+{
+  "name": "rs-friendly",
+  "description": "retrospring follow bot",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Strat-/rs-friendly",
+  "author": {
+    "name": "str_t | Ivan Kay",
+    "email": "ivan@sq10.net",
+    "url": "https://sq10.net/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Strat-/rs-friendly.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Strat-/rs-friendly/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/Strat-/rs-friendly/blob/master/LICENSE-MIT"
+    }
+  ],
+  "scripts": {
+    "start": "phantomjs rsfriendly.js"
+  },
+  "keywords": []
+}
