@@ -14,14 +14,14 @@ function quit(code){
 
 console.log("ms-friendly");
 console.log("---------");
-if (!env.RSF_U || !env.RSF_P){
+if (!env.MSF_U || !env.MSF_P){
     console.log("no credentials found, quitting");
     quit();
 }
 console.log("");
 
-var u = env.RSF_U;
-var p = env.RSF_P;
+var u = env.MSF_U;
+var p = env.MSF_P;
 console.log("will log in as "+u);
 
 var to_inject;
@@ -55,8 +55,8 @@ page.open('https://modernspring.sq10.net/sign_in', function(status) {
 var addedUsers = [];
 
 function handle_console(msg){
-    if (msg.indexOf("RSF") != 0) return;
-    msg = msg.replace("RSF", "");
+    if (msg.indexOf("MSF") != 0) return;
+    msg = msg.replace("MSF", "");
     if (msg == "::Q"){
         console.log("[console] requested process exit, quitting");
         quit();
@@ -107,22 +107,22 @@ function login_user(u, p){
 
 function get_error(){
     //sign in error, can't continue
-    console.log("RSF"+"got alert, can't continue");
+    console.log("MSF"+"got alert, can't continue");
     var elem = $(".alert.alert-danger.alert-dismissible");
     var err = elem.contents().filter(function(){
         return this.nodeType == 3;
     })[1];
-    console.log("RSF"+err.data.trim());
-    console.log("RSF::Q");
+    console.log("MSF"+err.data.trim());
+    console.log("MSF::Q");
 }
 
 function login_success(){
-    console.log("RSF"+"login successful, beginning scrape");
+    console.log("MSF"+"login successful, beginning scrape");
     window.location.href = "https://modernspring.sq10.net/public";
 }
 
 function scrape(addedUsers){
-    console.log("RSF"+"scraping from public question timeline");
+    console.log("MSF"+"scraping from public question timeline");
     var users = [];
 
     var askers = $(
@@ -143,11 +143,11 @@ function scrape(addedUsers){
         users.push(user);
     });
 
-    console.log("RSF"+"found "+users.length+" people");
+    console.log("MSF"+"found "+users.length+" people");
 
     function add_user(name){
         addedUsers.push(name);
-        console.log("RSF::DONE"+name);
+        console.log("MSF::DONE"+name);
     }
 
     var ADDED = 0;
@@ -156,9 +156,9 @@ function scrape(addedUsers){
     function next_user(){
         if (!users.length){
             console.log(
-                "RSF"+"added: "+ADDED+" ("+NEWADD+") | skipped: "+SKIPPED
+                "MSF"+"added: "+ADDED+" ("+NEWADD+") | skipped: "+SKIPPED
             );
-            console.log("RSF"+"done, reloading page in 30 seconds");
+            console.log("MSF"+"done, reloading page in 30 seconds");
             setTimeout(function(){window.location.reload();}, 30000);
             return;
         }
@@ -178,9 +178,9 @@ function scrape(addedUsers){
                     "You are already following that user."
                 ];
                 if (messages.indexOf(data.message) == -1){
-                    console.log("RSF"+"got an unknown status");
-                    console.log("RSF"+JSON.stringify(data));
-                    console.log("RSF::Q");
+                    console.log("MSF"+"got an unknown status");
+                    console.log("MSF"+JSON.stringify(data));
+                    console.log("MSF::Q");
                     return;
                 }
                 add_user(user);
@@ -192,7 +192,7 @@ function scrape(addedUsers){
                 setTimeout(next_user);
             }
         ).fail(function(){
-            console.log("RSF"+"failed");
+            console.log("MSF"+"failed");
         })
 
     }
