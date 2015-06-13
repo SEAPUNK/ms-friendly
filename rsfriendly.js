@@ -12,7 +12,7 @@ function quit(code){
     throw "";
 }
 
-console.log("rs-friendly");
+console.log("ms-friendly");
 console.log("---------");
 if (!env.RSF_U || !env.RSF_P){
     console.log("no credentials found, quitting");
@@ -35,7 +35,7 @@ page.onResourceError = function(resourceError) {
 
 
 console.log("navigating to sign in");
-page.open('https://retrospring.net/sign_in', function(status) {
+page.open('https://modernspring.sq10.net/sign_in', function(status) {
     if (status === "success"){
         console.log("signing in...");
         page.onConsoleMessage = handle_console;
@@ -63,7 +63,7 @@ function handle_console(msg){
     }
     if (msg.indexOf("::DONE") == 0){
         msg = msg.replace("::DONE", "");
-        console.log("[rsf] adding "+msg+" to added list");
+        console.log("[msf] adding "+msg+" to added list");
         addedUsers.push(msg);
         return;
     }
@@ -71,22 +71,22 @@ function handle_console(msg){
 };
 
 function handle_error(msg, trace){
-    console.log("[rsf] got error");
+    console.log("[msf] got error");
     console.log(msg);
     console.log(trace);
 }
 
 function handle_url_change(url){
-    console.log("[rsf] url changed: "+url);
+    console.log("[msf] url changed: "+url);
 
     var injectors = {
-        "https://retrospring.net/": login_success,
-        "https://retrospring.net/sign_in": get_error,
-        "https://retrospring.net/public": scrape
+        "https://modernspring.sq10.net/": login_success,
+        "https://modernspring.sq10.net/sign_in": get_error,
+        "https://modernspring.sq10.net/public": scrape
     };
 
     if (!injectors[url]){
-        console.log("[rsf] no viable injector found for that url, quitting");
+        console.log("[msf] no viable injector found for that url, quitting");
         return quit();
     }
     to_inject = injectors[url];
@@ -94,7 +94,7 @@ function handle_url_change(url){
 }
 
 function reinject_script(){
-    console.log("[rsf] reinjecting script");
+    console.log("[msf] reinjecting script");
     page.evaluate(to_inject, addedUsers);
 }
 
@@ -118,7 +118,7 @@ function get_error(){
 
 function login_success(){
     console.log("RSF"+"login successful, beginning scrape");
-    window.location.href = "https://retrospring.net/public";
+    window.location.href = "https://modernspring.sq10.net/public";
 }
 
 function scrape(addedUsers){
@@ -170,7 +170,7 @@ function scrape(addedUsers){
         }
 
         $.post(
-            "https://retrospring.net/ajax/create_friend",
+            "https://modernspring.sq10.net/ajax/create_friend",
             "screen_name="+user,
             function(data, textStatus){
                 var messages = [
