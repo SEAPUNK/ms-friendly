@@ -1,8 +1,8 @@
 {
-  "name": "rs-friendly",
-  "description": "retrospring follow bot",
+  "name": "ms-friendly",
+  "description": "modernspring follow bot",
   "version": "0.0.1",
-  "homepage": "https://github.com/Strat-/rs-friendly",
+  "homepage": "https://github.com/Strat-/ms-friendly",
   "author": {
     "name": "str_t | Ivan Kay",
     "email": "ivan@sq10.net",
@@ -10,19 +10,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Strat-/rs-friendly.git"
+    "url": "git://github.com/Strat-/ms-friendly.git"
   },
   "bugs": {
-    "url": "https://github.com/Strat-/rs-friendly/issues"
+    "url": "https://github.com/Strat-/ms-friendly/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/Strat-/rs-friendly/blob/master/LICENSE-MIT"
+      "url": "https://github.com/Strat-/ms-friendly/blob/master/LICENSE-MIT"
     }
   ],
   "scripts": {
-    "start": "phantomjs rsfriendly.js"
+    "start": "phantomjs msfriendly.js"
   },
   "keywords": []
 }
