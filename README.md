@@ -1,6 +1,8 @@
 ms-friendly
 ===============
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/SEAPUNK/ms-friendly.svg)](https://greenkeeper.io/)
+
 yeah
 
 on linux, mac, and windows (git shell):
